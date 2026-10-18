@@ -1,0 +1,15 @@
+<nav>
+  <span class="brand">Game Leaderboard</span>
+
+  <a routerLink="/leaderboard" routerLinkActive="active">Leaderboard</a>
+
+    @if (auth.isLoggedIn()) {
+    <a routerLink="/submit" routerLinkActive="active">Submit score</a>
+    <a routerLink="/scores" routerLinkActive="active">My scores</a>
+    <a routerLink="/save" routerLinkActive="active">My save</a>
+    <button type="button" (click)="auth.logout()">Log out</button>
+  }@else {
+    <a routerLink="/login" routerLinkActive="active">Log in</a>
+    <a routerLink="/register" routerLinkActive="active">Register</a>
+  }
+</nav>

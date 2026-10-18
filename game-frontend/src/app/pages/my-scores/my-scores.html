@@ -1,0 +1,30 @@
+<h2>My scores</h2>
+
+@if (loading()) {
+  <p>Loading...</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else if (total() === 0) {
+  <p>You haven't submitted any scores yet.</p>
+} @else {
+  <table>
+    <thead>
+      <tr><th>Score</th><th>Mode</th><th>Date</th></tr>
+    </thead>
+    <tbody>
+      @for (s of items(); track s.id) {
+        <tr>
+          <td>{{ s.value }}</td>
+          <td>{{ s.gameMode }}</td>
+          <td>{{ s.achievedAt | date: 'medium' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="pager">
+    <button type="button" (click)="goTo(page() - 1)" [disabled]="page() === 1">Previous</button>
+    <span>Page {{ page() }} of {{ totalPages() }} ({{ total() }} scores)</span>
+    <button type="button" (click)="goTo(page() + 1)" [disabled]="page() === totalPages()">Next</button>
+  </div>
+}

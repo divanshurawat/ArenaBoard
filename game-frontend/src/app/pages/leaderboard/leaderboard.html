@@ -1,0 +1,44 @@
+<h2>Leaderboard</h2>
+
+<div class="filters">
+  <label>
+    Game mode
+    <select #modeSelect (change)="setMode(modeSelect.value)">
+      @for (m of modes; track m) {
+        <option [value]="m" [selected]="m === mode()">{{ m }}</option>
+      }
+    </select>
+  </label>
+
+  <label>
+    Show top
+    <select #topSelect (change)="setTop(topSelect.value)">
+      @for (n of topOptions; track n) {
+        <option [value]="n" [selected]="n === top()">{{ n }}</option>
+      }
+    </select>
+  </label>
+</div>
+
+@if (loading()) {
+  <p>Loading...</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else if (entries().length === 0) {
+  <p>No scores yet for this mode. Be the first!</p>
+} @else {
+  <table>
+    <thead>
+      <tr><th>Rank</th><th>Player</th><th>Best score</th></tr>
+    </thead>
+    <tbody>
+      @for (e of entries(); track e.rank) {
+        <tr>
+          <td>{{ e.rank }}</td>
+          <td>{{ e.username }}</td>
+          <td>{{ e.bestScore }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

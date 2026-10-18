@@ -1,0 +1,6 @@
+@Player_Leaderboard_and_saves_HostAddress = http://localhost:5114
+
+GET {{Player_Leaderboard_and_saves_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

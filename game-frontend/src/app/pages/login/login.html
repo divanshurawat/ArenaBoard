@@ -1,0 +1,29 @@
+<h2>Login</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>
+    Username
+    <input formControlName="username" />
+  </label>
+  @if (form.controls.username.touched && form.controls.username.invalid) {
+    <small>Username must be 4 to 30 characters.</small>
+  }
+
+  <label>
+    Password
+    <input type="password" formControlName="password" />
+  </label>
+  @if (form.controls.password.touched && form.controls.password.invalid) {
+    <small>Password must be at least 8 characters.</small>
+  }
+
+  <button type="submit" [disabled]="loading()">
+    {{ loading() ? 'Logging in...' : 'Log in' }}
+  </button>
+</form>
+
+@if (errorMessage()) {
+  <p class="error">{{ errorMessage() }}</p>
+}
+
+<a routerLink="/register">No account yet? Register</a>

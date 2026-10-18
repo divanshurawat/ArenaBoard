@@ -1,0 +1,31 @@
+<h2>Submit a score</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>
+    Game mode
+    <select formControlName="gameMode">
+      @for (m of modes; track m) {
+        <option [value]="m">{{ m }}</option>
+      }
+    </select>
+  </label>
+
+  <label>
+    Score
+    <input type="number" formControlName="value" />
+  </label>
+  @if (form.controls.value.touched && form.controls.value.invalid) {
+    <small>Score must be a whole number from 0 to 1,000,000,000.</small>
+  }
+
+  <button type="submit" [disabled]="loading()">
+    {{ loading() ? 'Submitting...' : 'Submit score' }}
+  </button>
+</form>
+
+@if (successMessage()) {
+  <p class="success">{{ successMessage() }}</p>
+}
+@if (errorMessage()) {
+  <p class="error">{{ errorMessage() }}</p>
+}

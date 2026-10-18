@@ -1,0 +1,25 @@
+<h2>My save data</h2>
+
+@if (loading()) {
+  <p>Loading...</p>
+} @else {
+  <label>
+    Save JSON
+    <textarea #box rows="12" [value]="text()" (input)="onInput(box.value)"></textarea>
+  </label>
+
+  <button type="button" (click)="save()" [disabled]="saving()">
+    {{ saving() ? 'Saving...' : 'Save' }}
+  </button>
+
+  @if (updatedAt()) {
+    <p>Last saved: {{ updatedAt() | date: 'medium' }}</p>
+  }
+}
+
+@if (message()) {
+  <p class="success">{{ message() }}</p>
+}
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
