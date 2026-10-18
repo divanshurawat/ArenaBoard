@@ -1,8 +1,8 @@
-# Game Backend API
+# ArenaBoard
 
 REST API for a game's players, scores and cloud saves, built with ASP.NET Core 8, EF Core and SQL Server, secured with JWT.
 
-**Frontend:** [link to the Angular repo] · **Live demo:** _(added after deployment)_
+**Frontend:** [link to the Angular repo] Â· **Live demo:** _(added after deployment)_
 
 ## Features
 - Register and log in (BCrypt-hashed passwords, JWT bearer tokens)
@@ -12,15 +12,15 @@ REST API for a game's players, scores and cloud saves, built with ASP.NET Core 8
 - Per-player save data (JSON, create-or-update)
 
 ## Tech stack
-ASP.NET Core 8 · EF Core 8 · SQL Server · JWT · BCrypt · xUnit
+ASP.NET Core 8 Â· EF Core 8 Â· SQL Server Â· JWT Â· BCrypt Â· xUnit
 
 ## Endpoints
 | Method | Route | Auth | Description |
 |---|---|---|---|
-| POST | /Auth/register | – | Create a player (409 if the username is taken) |
-| POST | /Auth/login | – | Returns a JWT |
+| POST | /Auth/register | â€“ | Create a player (409 if the username is taken) |
+| POST | /Auth/login | â€“ | Returns a JWT |
 | POST | /Scores | JWT | Submit a score for the logged-in player |
-| GET | /Leaderboard?mode=&top= | – | Best score per player, ranked |
+| GET | /Leaderboard?mode=&top= | â€“ | Best score per player, ranked |
 | GET | /Players/me/scores?page=&pageSize= | JWT | Own scores, newest first, paged |
 | GET | /Players/me/save | JWT | Own save data (404 if none) |
 | PUT | /Players/me/save | JWT | Create or update own save (400 if not valid JSON) |
