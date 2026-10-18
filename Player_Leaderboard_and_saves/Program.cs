@@ -19,7 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Frontend", policy => policy
-        .WithOrigins("http://localhost:4200")
+        .WithOrigins("https://arena-board-flax.vercel.app")
         .AllowAnyHeader()
         .AllowAnyMethod());
 });
@@ -70,7 +70,7 @@ var app = builder.Build();
 app.UseExceptionHandler();      // early in the pipeline, before the other app.Use... lines
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Configuration.GetValue<bool>("EnableSwagger"))
 {
     app.UseSwagger();
     app.UseSwaggerUI();
